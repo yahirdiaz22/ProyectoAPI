@@ -8,7 +8,6 @@ namespace ProyectoAPI
         [Key] // Esto indica que idCliente es la clave primaria
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idVenta { get; set; }
-
         public int cantidadVendida { get; set; }
 
         public string nombre { get; set; }
@@ -16,5 +15,7 @@ namespace ProyectoAPI
         public string fecha { get; set; }
 
         public int status { get; set; }
+        public double total { get; set; }
+        public int precioUnitario { get; set; }
     }
 }

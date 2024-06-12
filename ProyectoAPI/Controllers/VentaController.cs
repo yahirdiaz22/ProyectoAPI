@@ -33,7 +33,7 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Venta>> AgregarVenta(int cantidadVendida, string fecha,string nombre, bool status)
+        public async Task<ActionResult<Venta>> AgregarVenta(int cantidadVendida, string fecha,string nombre, bool status, int precioUnitario, double total)
         {
             int Nuevostatus = status ? 1 : 0;
 
@@ -43,6 +43,8 @@ namespace ProyectoAPI.Controllers
                 fecha = fecha,
                 nombre= nombre,
                 status = Nuevostatus,
+                total = total,
+                precioUnitario = precioUnitario
             };
 
             _context.Venta.Add(nuevaVenta);
@@ -52,7 +54,7 @@ namespace ProyectoAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> ActualizarVenta(int id, int cantidadVendida, string fecha, string nombre)
+        public async Task<IActionResult> ActualizarVenta(int id, int cantidadVendida, string fecha, string nombre, int precioUnitario, double total)
         {
             var venta = await _context.Venta.FindAsync(id);
 
@@ -63,7 +65,9 @@ namespace ProyectoAPI.Controllers
 
             venta.cantidadVendida = cantidadVendida;
             venta.fecha = fecha;
-            venta.nombre= nombre;
+            venta.nombre = nombre;
+            venta.total = total;
+            venta.precioUnitario= precioUnitario;
 
             try
             {
